@@ -1,4 +1,3 @@
-
 DrawCluster<-function (data, label = NULL, point_size = 1, method = c("tsne", 
     "umap"), draw_cluster_text = TRUE, calculated = TRUE, pca = TRUE, 
     perplexity = 100, plot = TRUE, legend_plot = TRUE, seed = 1) 
@@ -158,7 +157,7 @@ InitialClustering<-function (expression_profile, user_offered = FALSE, sample_in
     sce_seurat <- FindVariableFeatures(sce_seurat, nfeatures = nfeatures,verbose=FALSE)
     sce_seurat <- ScaleData(sce_seurat,verbose=FALSE)
     sce_seurat <- RunPCA(sce_seurat, features = VariableFeatures(object = sce_seurat), 
-        ndims.print = 1, npcs = 15, nfeatures.print = 1,verbose=FALSE)
+        ndims.print = 1, npcs = 10, nfeatures.print = 1,verbose=FALSE)
     if (user_offered) {
         initial_clustering_result$sample_information <- sample_information_user_offered
     }
@@ -179,7 +178,7 @@ SpatialPlot<-function (initial_clustering_result, sample_information_coordinate)
     sce_seurat <- initial_clustering_result$sce_seurat
     Idents(sce_seurat) <- initial_clustering_result$sample_information
     require(ggplot2)
-    sce_seurat <- RunUMAP(sce_seurat, dims = 1:15,verbose=FALSE)
+    sce_seurat <- RunUMAP(sce_seurat, dims = 1:8,verbose=FALSE)
     sample_information_coordinate$cluster <- Idents(sce_seurat)
     cluster_plot <- DimPlot(sce_seurat, reduction = "umap")
     coordinate_plot <- ggplot(sample_information_coordinate, 
