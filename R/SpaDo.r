@@ -157,8 +157,8 @@ InitialClustering<-function (expression_profile, user_offered = FALSE, sample_in
     sce_seurat <- FindVariableFeatures(sce_seurat, nfeatures = nfeatures,verbose=FALSE)
     sce_seurat <- ScaleData(sce_seurat,verbose=FALSE)
     sce_seurat <- RunPCA(sce_seurat, features = VariableFeatures(object = sce_seurat), 
-        ndims.print = 1, npcs = 30, nfeatures.print = 1,verbose=FALSE)
-    print(30)
+        ndims.print = 1, npcs = 20, nfeatures.print = 1,verbose=FALSE)
+    print(20)
     if (user_offered) {
         initial_clustering_result$sample_information <- sample_information_user_offered
     }
